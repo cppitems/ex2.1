@@ -3,7 +3,9 @@
 #include <chrono>
 #include <utility>
 
-// implement your wrapping-functionality 'track_time' here
+// Change this function, so it can be used to measure
+// the execution time of a function with an arbitrary
+// number of arguments
 template<class CALLABLE, class Arg>
 double measureTime(CALLABLE &&call, Arg&& a, Arg&& b) {
   using Clock = std::chrono::high_resolution_clock;

@@ -1,13 +1,29 @@
-1 // item status
 # Exercise EX2.3
 
-This exercise is part **1** of 3 parts of EX2. See also [Item 000](https://cppitems.github.io/#/item/000) for an overview and deadlines. The submission deadline for EX2 (all three parts) is **Mo 29.11.2021, 4pm**. The sources related to EX2.1 are available at [Item 013](https://github.com/cppitems/cppitems/tree/master/items/013).
+This exercise is part **1** of 3 parts of EX2. See also [Item 000](https://cppitems.github.io/#/item/000) for an overview and deadlines. The submission deadline for EX2 (all three parts) is **Mo 29.11.2021, 4pm**. The sources related to EX2.1 are available at [https://github.com/cppitems/ex2.1](https://github.com/cppitems/ex2.1).
 
 ## Task description
 
 In this exercise, it is your task to implement a wrapper-functionality to measure the run time of *callables*, which are just functions or function objects which can be *called* using the `()` operator.
 
-The syntax of how to measure the run time is already fixed and provided in `src/MeasureTransform.cpp`, which is used to measure the time the standard algorithm function `std::transform` takes when applied to several `std::vector` objects.
+The functionality to measure the run time is already provided in `src/MeasureTransform.cpp`, which will be used to measure the time taken by any function passed.
+
+You are provided with a simple and inflexible implementation of `measureTime`, which only works for functions with two parameters of the same type:
+```C++
+template<class CALLABLE, class Arg>
+double measureTime(CALLABLE &&call, Arg&& a, Arg&& b) {
+  using Clock = std::chrono::high_resolution_clock;
+  auto start = Clock::now();    // start time measurement
+
+  // forward the two arguments to the callable `call`
+  call(std::forward<Arg>(a), std::forward<Arg>(b));
+
+  auto stop = Clock::now();     // stop time measurement
+  return std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+}
+```
+
+**Adapt the the function `measureTime` to allow for an arbitrary number of function arguments with arbitrary and possibly differing types.**
 
 **You have to implement the wrapping-functionality solely in `include/measureTime.hpp` and are not allowed to change any other files.**
 
@@ -31,21 +47,6 @@ add(a, 3.);
 double duration = measureTime(add, a, 3.);
 ```
 
-You are provided with a simple and inflexible implementation of `measureTime`, which only works for two parameters of the same type:
-```C++
-template<class CALLABLE, class Arg>
-double measureTime(CALLABLE &&call, Arg&& a, Arg&& b) {
-  using Clock = std::chrono::high_resolution_clock;
-  auto start = Clock::now();    // start time measurement
-
-  // forward the two arguments to the callable `call`
-  call(std::forward<Arg>(a), std::forward<Arg>(b));
-
-  auto stop = Clock::now();     // stop time measurement
-  return std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-}
-```
-
 However, if two parameters with different type are passed, this implementation fails. This is the case in the next test: `tests/Test_two_different_args`.
 
 The provided implementation will also fail if the number of parameters is not exactly 2.
@@ -64,7 +65,7 @@ Prepare yourself for a discussion on the concepts involved in your solution.
 
 ## Benchmark
 
-Once your implementation passes all tests, you can run the benchmark to see how the std algorithm `std::transform` performs when used with different types.
+Once your implementation passes all tests, you can run the benchmark to see how the std algorithm `std::transform` performs when used with different types. You are not required to understand the benchmarked functions in detail.
 
 By default, building of the benchmark is disabled in CMake and therefore it has to be turned on using:
 ```bash
