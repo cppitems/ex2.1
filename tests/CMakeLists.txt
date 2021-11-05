@@ -8,9 +8,9 @@ project(Tests LANGUAGES CXX)
 add_custom_target(myTests)
 
 set(MY_TEST_NAMES "")
-list(APPEND MY_TEST_NAMES "Test_two_args")
-list(APPEND MY_TEST_NAMES "Test_two_different_args")
-list(APPEND MY_TEST_NAMES "Test_multiple_args")
+list(APPEND MY_TEST_NAMES "TestA_two_args")
+list(APPEND MY_TEST_NAMES "TestB_two_different_args")
+list(APPEND MY_TEST_NAMES "TestC_multiple_args")
 
 foreach(MY_TEST_NAME ${MY_TEST_NAMES})
   add_executable(${MY_TEST_NAME} ${MY_TEST_NAME}.cpp testasserts.hpp)

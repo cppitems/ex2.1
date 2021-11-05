@@ -51,7 +51,7 @@ endif()
 # Build executables
 option(BUILD_BENCHMARK "Build the executables" OFF)
 if(BUILD_BENCHMARK)
-  set(BENCHMARK_NAME "MeasureTransform")
+  set(BENCHMARK_NAME "measureTransform")
   add_executable(${BENCHMARK_NAME} "src/${BENCHMARK_NAME}.cpp")
   target_link_libraries(${BENCHMARK_NAME} PRIVATE ${MY_LIBRARY})
 endif()

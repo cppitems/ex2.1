@@ -34,7 +34,7 @@ template <typename CTNR> void print(const CTNR &ctnr) {
   std::for_each(ctnr.begin(), ctnr.end(),
                 [](const value_type &item) { std::cout << item << ", "; });
   std::cout << std::endl;
-};
+}
 
 void outputTime(std::string funcCall, double t) {
   std::cout << std::left << std::setw(10) << "Call " << std::setw(50)
