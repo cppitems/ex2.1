@@ -29,12 +29,14 @@ The provided implementation will also fail if the number of parameters is not ex
 
 **You have to implement the wrapping-functionality solely in `include/measureTime.hpp` and are not allowed to change any other files.**
 
-In order to allow for any number of different parameters, you should use the following concepts:
+In order to allow for any number of different parameters, you should use
 
-- **perfect forwarding** (to support any combination of "value-ness", "const-ness" and "reference-ness" for the list of arguments) in combination with a
-- **variadic template (template parameter pack)** (to be able to forward any number of arguments)
+- **perfect forwarding** to support any combination of "value-ness", "const-ness", and "reference-ness" for the list of arguments in combination with a
+- **variadic template (template parameter pack)** to be able to forward any number of arguments.
 
 **Note**: For this exercise, you can assume that the `measureTime` wrapper-functionality only needs to support functions with return type `void`.
+
+Prepare yourself for a discussion of your submitted solution.
 
 ## Tests
 
