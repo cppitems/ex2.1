@@ -1,4 +1,4 @@
-# Exercise EX2.3
+# Exercise EX2.1
 
 This exercise is part **1** of 3 parts of EX2. See also [Item 000](https://cppitems.github.io/#/item/000) for an overview and deadlines. The submission deadline for EX2 (all three parts) is **Mo 29.11.2021, 4pm**. The sources related to EX2.1 are available at [https://github.com/cppitems/ex2.1](https://github.com/cppitems/ex2.1).
 
